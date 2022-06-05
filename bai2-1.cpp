@@ -26,6 +26,26 @@ class Mydate{
 			cout<<"\nnhap thang: ";cin>>thang;
 			cout<<"\nnhap nam: ";cin>>nam;
 		}
+		bool operator>(Mydate obj){
+			if(this->nam > obj.nam)
+				return true;
+			else if(this->nam < obj.nam)
+				return false;
+			else{
+				if(this->thang > obj.thang)
+					return true;
+				else if(this->thang < obj.thang)
+					return false;
+				else{
+					if(this->ngay > obj.ngay)
+						return true;
+					else if(this->ngay < obj.ngay)
+						return false;
+					else
+						return true;
+				}
+			}
+		}
 		int soSanh(Mydate obj){
 			if(this->nam > obj.nam){
 				return 1;
@@ -99,20 +119,9 @@ int main(){
 		cout<<"\nthong tin file  thu "<<i+1<<": ";
 		myFile[i].hienThi();
 	}
-	// sap xep
-//	for(int i=0;i<4;i++){
-//		for(int j=3;j>i;j--){
-//			Mydate myDateI = myFile[i].getDate();
-//			Mydate myDateJ = myFile[j].getDate();
-//			if(myDateI.soSanh(myDateJ)==1){
-//				Myfile temp = myFile[i];
-//				myFile[i]= myFile[j];
-//				myFile[j] = temp;
-//			}
-//		}
-//	}
-
-	for(int i=0;i<3;i++){
+// sap xep
+// khong dung toan tu operator
+/*	for(int i=0;i<3;i++){
 		for(int j=i+1;j<4;j++){
 			Mydate myDateI = myFile[i].getDate();
 			Mydate myDateJ = myFile[j].getDate();
@@ -122,6 +131,18 @@ int main(){
 				myFile[j] = temp;
 			}
 		}
+	}*/
+	// dung toan tu operator
+	for(int i=0;i<3;i++){
+			for(int j=i+1;j<4;j++){
+				Mydate myDateI = myFile[i].getDate();
+				Mydate myDateJ = myFile[j].getDate();
+				if(myDateI > myDateJ){
+					Myfile temp = myFile[i];
+					myFile[i]= myFile[j];
+					myFile[j] = temp;
+				}
+			}
 	}
 	
 	// sau khi sap xep
@@ -131,3 +152,5 @@ int main(){
 		myFile[i].hienThi();
 	}
 }
+
+
